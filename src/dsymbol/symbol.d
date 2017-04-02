@@ -387,7 +387,7 @@ public:
 	/**
 	 * DSymbol location
 	 */
-	size_t location() const pure nothrow @nogc @property
+	size_t location() const pure nothrow @nogc @property @safe
 	{
 		return _location;
 	}

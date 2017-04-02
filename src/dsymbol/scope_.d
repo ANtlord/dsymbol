@@ -62,7 +62,7 @@ struct Scope
 	 * Returns:
 	 *     the innermost scope that contains the given cursor position
 	 */
-	Scope* getScopeByCursor(size_t cursorPosition) pure @nogc
+	Scope* getScopeByCursor(size_t cursorPosition) pure @nogc const
 	{
 		if (cursorPosition < startLocation) return null;
 		if (cursorPosition > endLocation) return null;
@@ -185,7 +185,7 @@ struct Scope
 	 *     all symbols with the given name in the scope containing the cursor
 	 *     and its parent scopes
 	 */
-	DSymbol*[] getSymbolsByNameAndCursor(istring name, size_t cursorPosition)
+	DSymbol*[] getSymbolsByNameAndCursor(istring name, size_t cursorPosition) const
 	{
 		auto s = getScopeByCursor(cursorPosition);
 		if (s is null)
@@ -193,7 +193,7 @@ struct Scope
 		return s.getSymbolsByName(name);
 	}
 
-	DSymbol* getFirstSymbolByNameAndCursor(istring name, size_t cursorPosition)
+	DSymbol* getFirstSymbolByNameAndCursor(istring name, size_t cursorPosition) const
 	{
 		auto s = getSymbolsByNameAndCursor(name, cursorPosition);
 		return s.length > 0 ? s[0] : null;
